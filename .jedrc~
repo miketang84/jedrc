@@ -265,11 +265,7 @@ setkey("bol();emacs_yp_kill_line();emacs_yp_kill_line();", "^K");
 unsetkey("^J");
 setkey("emacs_yp_kill_line();", "^J");
 
-setkey("bufed()", "^Z");
-setkey("dired()", "^X^Z");
-setkey("smart_set_mark_cmd", "^Q");
-setkey("one_window", "\eo");
-
+setkey("bufed()", "^Z")
 
 
 define backspaces ()
