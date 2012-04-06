@@ -255,7 +255,7 @@ setkey("eol_cmd", "\ee");
 unsetkey("\ea");
 setkey("beg_of_line", "\ea");
 unsetkey("\ei");
-unsetkey("\ey");
+%unsetkey("\ey");
 unsetkey("\es");
 unsetkey("\eo");
 unsetkey("^H");
