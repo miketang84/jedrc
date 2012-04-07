@@ -130,11 +130,12 @@ HORIZONTAL_PAN	= 20;	% if zero, no automatic panning.  If positive, only
 BLINK		= 1;	% if non zero, blink matching parenthesis
 TAB_DEFAULT	= 4;	% Tab size  (also try edit_tab_stops)
 USE_TABS	= 1;	% Use tabs when generating whitespace.
+TAB         = 4;
 
 Tab_Always_Inserts_Tab = 0; % Set this to 1 if you want the tab key to insert
                             % tabs.
-
-WRAP_DEFAULT	= 200;	% wrap column
+_Jed_Default_Color_Scheme = "black3";
+WRAP_DEFAULT	= 2000;	% wrap column
 ADD_NEWLINE	= 1;	% add newline to file when writing if one not present
 IGNORE_BEEP	= 3;	% Beep terminal during error messages---
                         %  1 == sound only, 2 = visible bell only, 3 = both
@@ -240,10 +241,9 @@ define dired_hook ()
 }
 
 
-%% ========================= defined by myself =============================
+%% ========================= defined by daoge  =============================
 () = evalfile("emacs");
 enable_top_status_line(0);
-setkey("self_insert_cmd", "^I");
 auto_compression_mode(1);
 
 unsetkey("\ef");
@@ -255,20 +255,23 @@ setkey("eol_cmd", "\ee");
 unsetkey("\ea");
 setkey("beg_of_line", "\ea");
 unsetkey("\ei");
-%unsetkey("\ey");
 unsetkey("\es");
-unsetkey("\eo");
+unsetkey("\eu");
 unsetkey("^H");
+unsetkey("`");
+setkey("self_insert_cmd", "`");
+
 
 unsetkey("^K");
-setkey("bol();emacs_yp_kill_line();emacs_yp_kill_line();", "^K");
+setkey("bol();if(eolp()==0)emacs_yp_kill_line();del();", "^K");
+%setkey("bol();if(eolp()==0)emacs_yp_kill_line();emacs_yp_kill_line();", "^K");
 unsetkey("^J");
 setkey("emacs_yp_kill_line();", "^J");
 
 setkey("bufed()", "^Z");
 setkey("dired()", "^X^Z");
 setkey("smart_set_mark_cmd", "^Q");
-setkey("one_window", "\eo");
+setkey("one_window", "\el");
 
 
 
@@ -295,7 +298,7 @@ define my_indent_region_or_line(dir)
    col = what_column() - 1;
 	 
    bol_trim ();
-   whitespace( col + TAB_DEFAULT );
+   whitespace( col + dir * TAB_DEFAULT );
     return;
      }
    % narrow() doesnot work, as indent_line() needs the context!
@@ -321,7 +324,7 @@ define my_indent_region_or_line(dir)
 
 setkey ("my_indent_region_or_line(1)", "^I"); 
 setkey ("my_indent_region_or_line(-1)", "^U"); 
-
+setkey ("insert_char('\t')", "\ei");
 %
 % Switch to previous or next buffer.
 %   This code originated in ide_next_buffer() in ide.sl.
@@ -411,7 +414,7 @@ define search_current_word(direction)
 % Bind to Alt-z+Alt-comma (alt-z then alt-comma) and Alt-z+Alt-period.
 setkey ("search_current_word(-1)", "\e&");
 setkey ("search_current_word(1)", "\e*");
-
+define_word("_A-Za-z0-9");
 
 %% ====================================
 autoload("yp_copy_region_as_kill", "yankpop");
