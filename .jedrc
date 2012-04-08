@@ -263,10 +263,16 @@ setkey("self_insert_cmd", "`");
 
 
 unsetkey("^K");
-setkey("bol();if(eolp()==0)emacs_yp_kill_line();del();", "^K");
+setkey("push_spot();bol();push_mark();down_1();yp_copy_region_as_kill();pop_spot();delete_line();", "^K");
 %setkey("bol();if(eolp()==0)emacs_yp_kill_line();emacs_yp_kill_line();", "^K");
 unsetkey("^J");
 setkey("emacs_yp_kill_line();", "^J");
+%unsetkey("^Y");
+%setkey("yp_yank();newline();", "^Y");
+setkey("beg_of_line", "\eOH");
+setkey("eol_cmd", "\eOF");
+
+
 
 setkey("bufed()", "^Z");
 setkey("dired()", "^X^Z");
@@ -325,6 +331,8 @@ define my_indent_region_or_line(dir)
 setkey ("my_indent_region_or_line(1)", "^I"); 
 setkey ("my_indent_region_or_line(-1)", "^U"); 
 setkey ("insert_char('\t')", "\ei");
+setkey ("my_indent_region_or_line(1)", "^]"); 
+%setkey ("my_indent_region_or_line(-1)", "^("); 
 %
 % Switch to previous or next buffer.
 %   This code originated in ide_next_buffer() in ide.sl.
