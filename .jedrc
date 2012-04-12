@@ -267,8 +267,8 @@ setkey("push_spot();bol();push_mark();down_1();yp_copy_region_as_kill();pop_spot
 %setkey("bol();if(eolp()==0)emacs_yp_kill_line();emacs_yp_kill_line();", "^K");
 unsetkey("^J");
 setkey("emacs_yp_kill_line();", "^J");
-%unsetkey("^Y");
-%setkey("yp_yank();newline();", "^Y");
+unsetkey("^V");
+setkey("yp_yank();", "^V");
 setkey("beg_of_line", "\eOH");
 setkey("eol_cmd", "\eOF");
 
