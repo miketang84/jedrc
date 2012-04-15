@@ -400,8 +400,8 @@ set_syntax_flags ($1, 0);			% keywords ARE case-sensitive
 
 () = define_keywords ($1, "doifinor", 2); % all keywords of length 2
 () = define_keywords ($1, "andendfornilnot", 3); % of length 3 ...
-() = define_keywords ($1, "elsethen", 4);
-() = define_keywords ($1, "breaklocaluntilwhile", 5);
+() = define_keywords ($1, "elsethentrue", 4);
+() = define_keywords ($1, "breaklocaluntilwhilefalse", 5);
 () = define_keywords ($1, "elseifrepeatreturn", 6);
 () = define_keywords ($1, "function", 8);
 

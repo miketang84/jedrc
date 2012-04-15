@@ -441,7 +441,7 @@ private define setup_dfa_callback (name)
    dfa_define_highlight_rule("'([^\'\\\\]|\\\\.)*'", "string", name);	% normal string
    dfa_define_highlight_rule("^#.*", "comment", name);           % #! comment
    dfa_define_highlight_rule("--.*", "comment", name);		% comment
-   dfa_define_highlight_rule("--\[=*\[.*", "comment", name);		% comment
+   dfa_define_highlight_rule("--\[=*\[.*\]\]", "comment", name);		% comment
    dfa_define_highlight_rule("[A-Za-z_][A-Za-z_0-9]*", "Knormal", name); % identifier
    dfa_define_highlight_rule("[0-9]+", "number", name);	% decimal int
    dfa_define_highlight_rule("[0-9]+\\.[0-9]*([Ee][\\+\\-]?[0-9]+)?",
